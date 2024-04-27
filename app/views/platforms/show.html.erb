@@ -1,0 +1,16 @@
+<% provide(:title, @platform.name) %>
+
+<h1><%= @platform.name %></h1>
+
+<% if not user_signed_in? or not current_user.subscribed? @platform %>
+  <%= form_with url: subscribe_path, method: :post do |form| %>
+    <%= form.hidden_field 'platform_id', name: 'platform_id', value: @platform.id %>
+    <%= form.submit 'Subscribe' %>
+  <% end %>
+<% else %>
+  <p>You are subscribed!</p>
+  <%= form_with url: unsubscribe_path, method: :delete do |form| %>
+    <%= form.hidden_field 'platform_id', name: 'platform_id', value: @platform.id %>
+    <%= form.submit 'Unsubscribe' %>
+  <% end %>
+<% end %>

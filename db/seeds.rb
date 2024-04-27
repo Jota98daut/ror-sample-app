@@ -27,3 +27,7 @@ users = User.take(6)
   content = Faker::Lorem.sentence(word_count: 5)
   users.each { |user| user.microposts.create!(content:) }
 end
+
+%w[Facebook Instagram Twitter Reddit].each do |name|
+  Platform.create!(name:)
+end

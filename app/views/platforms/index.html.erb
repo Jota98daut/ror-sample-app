@@ -1,0 +1,9 @@
+<% provide(:title, 'Platforms') %>
+
+<h1>Platforms</h1>
+
+<ul>
+  <% @platforms.each do |platform| %>
+    <li><%= link_to platform.name, platform %></li>
+  <% end %>
+</ul>
