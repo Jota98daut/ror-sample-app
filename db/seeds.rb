@@ -5,10 +5,12 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# Create an user 
 User.create!(username: 'Joel',
              email: 'joel@railstutorial.org',
-             password: 'foobar',
-             password_confirmation: 'foobar')
+             password: 'password',
+             password_confirmation: 'password')
 
 10.times do |n|
   username = Faker::Name.first_name
@@ -20,14 +22,19 @@ User.create!(username: 'Joel',
                password_confirmation: password)
 end
 
-# Generate microposts for a subset of users
-users = User.take(6)
-
-50.times do
-  content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.microposts.create!(content:) }
-end
+# Generate some platforms
 
 %w[Facebook Instagram Twitter Reddit].each do |name|
   Platform.create!(name:)
+end
+
+# Generate microposts for a subset of users
+
+users = User.take(6)
+platform = Platform.first
+
+50.times do
+  content = Faker::Lorem.sentence(word_count: 5)
+
+  users.each { |user| user.microposts.create!(content:, platform:) }
 end

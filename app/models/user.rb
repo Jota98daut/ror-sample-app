@@ -9,7 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def feed
-    Micropost.where('user_id = ?', id)
+    Micropost.where(user_id: id).or(Micropost.where(platform: platforms))
   end
 
   def subscribe(platform)

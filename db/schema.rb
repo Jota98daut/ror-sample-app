@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_28_002516) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_29_012113) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,6 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_28_002516) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "platform_id", null: false
+    t.index ["platform_id"], name: "index_microposts_on_platform_id"
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
@@ -77,6 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_28_002516) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "microposts", "platforms"
   add_foreign_key "platform_users", "platforms"
   add_foreign_key "platform_users", "users"
 end
