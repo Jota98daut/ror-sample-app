@@ -14,7 +14,7 @@ class User < ApplicationRecord
   end
 
   def subscribe(platform)
-    platforms << platform
+    platforms << platform unless subscribed?(platform)
   end
 
   def unsubscribe(platform)

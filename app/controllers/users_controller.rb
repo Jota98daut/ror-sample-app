@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[subscribe unsubscribe]
 
   # GET /users
   def index
@@ -22,8 +23,6 @@ class UsersController < ApplicationController
 
   # POST /users/subscriptions
   def subscribe
-    authenticate_user!
-
     @platform = Platform.find(params[:platform_id])
     current_user.subscribe @platform
 
@@ -32,8 +31,6 @@ class UsersController < ApplicationController
 
   # DELETE /users/subscriptions
   def unsubscribe
-    authenticate_user!
-
     @platform = Platform.find(params[:platform_id])
     current_user.unsubscribe @platform
 
