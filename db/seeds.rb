@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# Create an user 
+# Create an user
 User.create!(username: 'Joel',
              email: 'joel@railstutorial.org',
              password: 'password',
@@ -38,3 +38,4 @@ platform = Platform.first
 
   users.each { |user| user.microposts.create!(content:, platform:) }
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

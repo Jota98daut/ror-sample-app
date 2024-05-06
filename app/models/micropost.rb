@@ -16,4 +16,12 @@ class Micropost < ApplicationRecord
                               message: 'should be less than 5MB' }
 
   default_scope -> { order(created_at: :desc) }
+
+  def short_content(length = 50)
+    if content.length <= length
+      content
+    else
+      "#{content[0..length - 3]}..."
+    end
+  end
 end
