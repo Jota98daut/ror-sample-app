@@ -3,6 +3,11 @@
 <div>
   <h1>Users</h1>
 
+  <%= form_with url: users_path, method: :get do |form| %>
+    <%= form.text_field :search, value: @search, placeholder: 'search by username or email' %>
+    <%= button_tag 'Search', type: 'submit' %>
+  <% end %>
+
   <table class="table">
     <thead>
       <th scope="col">ID</th>

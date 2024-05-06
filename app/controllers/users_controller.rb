@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    @search = params[:search]
+    @users = User.where('username LIKE ?', "%#{@search}%")
+                 .or(User.where('email LIKE ?', "%#{@search}%"))
   end
 
   # GET /users/1
