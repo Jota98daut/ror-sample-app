@@ -3,6 +3,7 @@
 joel:
   username: joel
   email: joel@example.com
+  confirmed_at: <%= DateTime.now %>
 
 one:
   username: MyString

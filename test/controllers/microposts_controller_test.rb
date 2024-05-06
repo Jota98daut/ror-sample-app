@@ -12,18 +12,18 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Micropost.count', 1) do
       post microposts_path, params: {
         micropost: {
-          content: @micropost.content,
+          content: 'Content',
           platform_id: @platform.id
         }
       }
     end
   end
 
-  # test 'should destroy micropost' do
-  #   assert_difference 'Micropost.count', -1 do
-  #     delete micropost_path(@micropost)
-  #   end
-  # end
+  test 'should destroy micropost' do
+    assert_difference 'Micropost.count', -1 do
+      delete micropost_path(@micropost)
+    end
+  end
 
   test 'should redirect create when not logged in' do
     sign_out @user
