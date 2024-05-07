@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[subscribe unsubscribe]
+  before_action :set_platform, only: %i[subscribe unsubscribe]
 
   # GET /users
   def index
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
 
   # POST /users/subscriptions
   def subscribe
-    @platform = Platform.find(params[:platform_id])
     current_user.subscribe @platform
 
     redirect_to platform_path(@platform)
@@ -31,7 +31,6 @@ class UsersController < ApplicationController
 
   # DELETE /users/subscriptions
   def unsubscribe
-    @platform = Platform.find(params[:platform_id])
     current_user.unsubscribe @platform
 
     redirect_to platform_path(@platform)
@@ -42,5 +41,9 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_platform
+    @platform = Platform.find(params[:platform_id])
   end
 end
